@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Se ejecuta sin detener procesos 2do plano -->
+    <!-- <script async src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+    <title>Media Player</title>
+</head>
+<body>
+    <header>
+        <h1>Media Player</h1>
+    </header>
+    <main class="container">
+        <!-- <code>hi - bye </code> -->
+        <video class="movie">
+            <source src="https://firebasestorage.googleapis.com/v0/b/full-stack-courses.appspot.com/o/JS%20%26%20TS%2FJS%2FCurso%20Profesional%20de%20JavaScript.mp4?alt=media&token=f83a8db1-957a-4f15-8e60-856a7799b8b6" />
+        </video>
+        <button id="play">Play/Pause</button>
+        <button id="mute">Un-muted</button>
+    </main>
+
+    <script>
+        //Global Scope - peligro de ser sobreescrita
+            // var message = 'Hey, Jhon'
+
+        //Function Scope
+            // function printNumbers(){
+            //     // var i; implicitamente es declarado fuera 
+            //     for (var i = 0; i < 10; i++) {
+            //         // i para a otro scope nuevo en la funcion eventually...
+            //         function eventuallyPrintNumber(n){
+            //             setTimeout(() => {
+            //                 console.log(n)
+            //             }, 2000);     
+            //         }
+            //         eventuallyPrintNumber(i)
+            //     }
+            // }
+            // printNumbers()
+
+        //Block Scope
+            // function printNumbers2(){
+            //     for (let i = 0; i < 10; i++) {
+            //         // i para a otro scope nuevo en la funcion eventually...
+            //             setTimeout(() => {
+            //                 console.log(i)
+            //             }, 2000);     
+            //         }
+            //     }
+            // printNumbers2()
+
+        //Module Scope - limitado al archivo
+
+    </script>
+    <script>
+    //CLAUSER
+        //IIFE - funcion scope - los datos ya no son accedidos desde la consola
+            // (function() {
+            //     let color = "blue"
+
+            //     function printColor() {
+            //         console.log(color)
+            //     }
+            //     printColor()
+            // })();
+
+        //Funciones que regresan funciones
+            // const makeCOlorPrinter = (color) => {
+            //     let colorMessage = `The color is ${color}`
+            //     return () => {
+            //         console.log(colorMessage)
+            //     }
+            // }
+            // //llamada funcion 1
+            // let greenColorPrinter = makeCOlorPrinter('green') 
+            // //llamada funcion 2 con el () a la variable
+            // console.log(greenColorPrinter())
+
+        //Variables 'privadas'
+                //Acceso por consola
+                    // const counter = {
+                    //     count: 3
+                    // }
+                //Acceso por funciones - mayor seguridad
+
+                function makeCounter (n) {
+                    let count = n;
+                    return {
+                        increase: () => {
+                            count = count + 1
+                        },
+                        decrease:() => {
+                            count = count - 1
+                        },
+                        getCount:() => {
+                            return count;
+                        }
+
+                    }
+                }
+
+                //la variable ya no esta expuesta
+                let counter = makeCounter(7)
+                console.log(`The count is: `, counter.getCount())
+                counter.increase()
+                console.log(`The count is: `, counter.getCount())
+                counter.decrease()
+                counter.decrease()
+                counter.decrease()
+                counter.decrease()
+                console.log(`The count is: `, counter.getCount())
+
+    </script>
+
+    <!-- limita el alcance no salen del archivo - navegadores nuevos - va con `import` -->
+    <script type="module" src="/assets/index.js"></script> 
+</body>
+</html>
